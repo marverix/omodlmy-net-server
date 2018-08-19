@@ -1,0 +1,37 @@
+{
+  "name": "omodlmy.net",
+  "description": "Omódlmy Net - Server",
+  "version": "1.0.1",
+  "author": "Marek Sierociński",
+  "contributors": [],
+  "engines": {
+    "node": "8.x"
+  },
+  "scripts": {
+    "api-server": "node api-server.js",
+    "test": "npx mocha"
+  },
+  "config": {
+    "port": 50001,
+    "mongodb": {
+      "host": "localhost",
+      "port": 27017,
+      "db": "omodlmy-net"
+    }
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-mongodb-session": "^2.0.3",
+    "express": "^4.16.0",
+    "express-session": "^1.15.6",
+    "finka": "^1.0.0",
+    "ip": "^1.1.5",
+    "helmet": "^3.12.1",
+    "mongodb": "^3.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0"
+  }
+}
