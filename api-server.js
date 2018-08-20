@@ -29,10 +29,10 @@ const app = express();
 const PORT = process.env.npm_package_config_port;
 const MODE_PRODUCTION = app.get('env') === 'production';
 const MODE_VIRTUAL = app.get('env') === 'virtual';
-const SESSION_SECRET = fs.readFileSync('.session-secret');
+const SESSION_SECRET = fs.readFileSync('.session-secret', 'utf-8');
 
 // session cookie
-const sessionParams = {
+var sessionParams = {
   secret: SESSION_SECRET,
   store: store,
   name: 'prayerHash',
