@@ -48,8 +48,20 @@ var allowedOrigins = null;
 var bindAddr = null;
 
 if (MODE_PRODUCTION) {
-  app.set('trust proxy', 1); // trust first proxy
-  sessionParams.cookie.secure = true; // serve secure cookies
+  app.set('trust proxy', 1);
+
+  // cookie.secure wymaga ustawienia przy reverse-proxy
+  // X-Forwarded-Proto: https
+  //
+  // W Apache2:
+  // RequestHeader set X-Forwarded-Proto "https"
+  //
+  // W ngnix:
+  // proxy_set_header X-Forwarded-Proto https;
+  //
+  // https://github.com/expressjs/session/issues/281#issuecomment-191359194
+  sessionParams.cookie.secure = true;
+
   allowedOrigins = ['https://omodlmy.net'];
   bindAddr = '127.0.0.1';
 } else {
