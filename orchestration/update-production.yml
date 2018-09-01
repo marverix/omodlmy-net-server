@@ -1,0 +1,8 @@
+---
+  - name: Update Omodlmy Net Server
+    hosts: omodlmy-net-server
+    any_errors_fatal: true
+    gather_facts: true
+
+    roles:
+      - role: server-update

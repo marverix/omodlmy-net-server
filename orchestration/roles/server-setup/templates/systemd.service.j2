@@ -1,0 +1,27 @@
+[Unit]
+Description=Server do aplikacji Omodlmy Net
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/npm run api-server
+WorkingDirectory={{ server_dir }}
+
+User={{ remote_user }}
+Group={{ remote_group }}
+
+# Environment variables:
+Environment=NODE_ENV={{ server_mode }}
+
+# Allow many incoming connections
+LimitNOFILE=infinity
+
+# Allow core dumps for debugging
+LimitCORE=infinity
+
+StandardInput=null
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

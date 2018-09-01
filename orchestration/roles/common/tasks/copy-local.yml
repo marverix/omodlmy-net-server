@@ -1,0 +1,16 @@
+---
+- include_tasks: prepare-directory.yml
+
+- name: Copy files
+  copy:
+    src: "../../../../{{ item }}"
+    dest: "{{ server_dir }}/{{ item }}"
+  become: yes
+  become_user: "{{ remote_user }}"
+  with_items:
+    - api-server.js
+    - package.json
+    - package-lock.json
+    - modules/
+
+- include_tasks: install-npm-dependencies.yml

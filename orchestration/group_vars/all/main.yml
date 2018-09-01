@@ -1,0 +1,11 @@
+---
+# Remote user and group
+remote_user: "omodlmy"
+remote_group: "{{ remote_user }}"
+
+# Paths
+server_dir: "/home/{{ remote_user }}/server"
+tarball_path: /tmp/omodlmy-net-server.tar.gz
+
+# Names
+service_name: "omodlmy-net-server"

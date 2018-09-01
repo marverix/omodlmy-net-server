@@ -1,0 +1,9 @@
+---
+- name: Install
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - curl
+    - jq

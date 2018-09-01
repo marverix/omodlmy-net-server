@@ -1,0 +1,6 @@
+---
+- include_tasks: copy-local.yml
+  when: server_mode == "virtual"
+  
+- include_tasks: download-latest-release.yml
+  when: server_mode != "virtual"

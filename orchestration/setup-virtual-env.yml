@@ -1,0 +1,21 @@
+---
+  - name: Setup virtual Omodlmy Net Server
+    hosts: all
+    any_errors_fatal: true
+    gather_facts: false
+    pre_tasks:
+      - name: Install python for Ansible
+        raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+        changed_when: false
+        become: yes
+      - setup: # aka gather_facts
+
+    roles:
+      - role: dependencies
+      - role: prepare-user
+      - role: nodejs
+      - role: mongodb
+      - role: server-setup
+
+    vars:
+      server_mode: virtual

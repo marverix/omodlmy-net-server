@@ -1,0 +1,3 @@
+use omodlmy-net
+db.createCollection('sessions');
+db.createCollection('intentions');
