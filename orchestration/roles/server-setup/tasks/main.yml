@@ -1,0 +1,39 @@
+---
+- name: Copy mongo setup file
+  copy:
+    src: files/mongo.setup
+    dest: /tmp/mongo.setup
+    
+- name: Setup db structure
+  shell: mongo < /tmp/mongo.setup
+
+- name: Install
+  include_role:
+    name: common
+    tasks_from: update
+
+- name: Generate session secret
+  template:
+    src: .session-secret.j2
+    dest: "{{ server_dir }}/.session-secret"
+    owner: "{{ remote_user}}"
+    group: "{{ remote_group }}"
+    mode: 0664
+  become: yes
+  when: server_mode == "virtual"
+
+- name: Copy service
+  template:
+    src: systemd.service.j2
+    dest: /etc/systemd/system/{{ service_name }}.service
+    owner: root
+    group: root
+    mode: 0664
+  become: yes
+
+- name: Start service
+  systemd:
+    name: "{{ service_name }}"
+    state: started
+    enabled: yes
+  become: yes

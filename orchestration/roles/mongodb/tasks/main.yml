@@ -1,0 +1,26 @@
+---
+- name: Add apt-key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "{{ mongo_apt_key }}"
+  become: yes
+
+- name: Add mongodb repository
+  apt_repository:
+    repo: "deb http://repo.mongodb.org/apt/ubuntu {{ mongo_apt_repo_version }} multiverse"
+    state: present
+  become: yes
+
+- name: Install mongodb
+  apt:
+    name: mongodb-org
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Start service
+  systemd:
+    name: mongod
+    state: started
+    enabled: yes
+  become: yes

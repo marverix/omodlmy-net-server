@@ -1,0 +1,7 @@
+# Folders
+.vagrant/
+.vscode/
+
+# Files
+*.log
+*.retry

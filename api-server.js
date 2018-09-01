@@ -68,7 +68,7 @@ if (MODE_PRODUCTION) {
   allowedOrigins = ['http://127.0.0.1:8080', 'http://localhost:8080'];
 
   if (MODE_VIRTUAL) {
-    allowedOrigins.push('http://172.22.22.22:8080');
+    allowedOrigins = '*';
   } else {
     var ip = require('ip');
     allowedOrigins.push('http://' + ip.address() + ':8080');
@@ -83,7 +83,9 @@ app.use(session(sessionParams));
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
   var origin = req.headers.origin;
-  if (allowedOrigins.indexOf(origin) > -1) {
+  if (allowedOrigins === '*') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  } else if (allowedOrigins.indexOf(origin) > -1) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
 

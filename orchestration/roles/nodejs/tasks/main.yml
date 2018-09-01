@@ -1,0 +1,15 @@
+---
+- name: Download installation script
+  get_url:
+    url: "https://deb.nodesource.com/setup_{{ nodejs_version }}"
+    dest: /tmp/nodesource_setup.sh
+
+- name: Run installation script
+  shell: bash /tmp/nodesource_setup.sh
+  become: yes
+
+- name: Install nodejs
+  apt:
+    name: nodejs
+    state: present
+  become: yes

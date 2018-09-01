@@ -1,0 +1,7 @@
+---
+- name: Install npm dependencies
+  npm:
+    path: "{{ server_dir }}"
+    state: present
+  become: yes
+  become_user: "{{ remote_user }}"

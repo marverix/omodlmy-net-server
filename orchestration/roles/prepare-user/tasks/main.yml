@@ -1,0 +1,13 @@
+---
+- name: Ensure group exists
+  group:
+    name: "{{ remote_group }}"
+    state: present
+  become: yes
+
+- name: Create user
+  user:
+    name: "{{ remote_user }}"
+    groups: "{{ remote_group }}"
+    state: present
+  become: yes

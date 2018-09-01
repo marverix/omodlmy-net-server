@@ -1,0 +1,32 @@
+---
+- name: Get tarball url
+  shell: curl -s https://api.github.com/repos/icxc-pl/omodlmy-net-server/releases/latest | jq -r .tarball_url
+  args:
+    warn: no
+  register: tarball_url
+
+- name: Download latest release
+  get_url:
+    url: "{{ tarball_url.stdout }}"
+    dest: "{{ tarball_path }}"
+    force: yes
+
+- name: Clean current release
+  file:
+    state: absent
+    path: "{{ server_dir }}"
+  become: yes
+  become_user: "{{ remote_user }}"
+
+- include_tasks: prepare-directory.yml
+
+- name: Unpack release
+  unarchive:
+    src: "{{ tarball_path }}"
+    dest: "{{ server_dir }}"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+  become: yes
+  become_user: "{{ remote_user }}"
+
+- include_tasks: install-npm-dependencies.yml
