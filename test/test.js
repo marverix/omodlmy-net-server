@@ -3,8 +3,8 @@ var chaiHttp = require('chai-http');
 
 chai.use(chaiHttp);
 
-var $server = chai.request('http://localhost:50001');
-var $api = chai.request('http://localhost:50001/api');
+var $server = chai.request('http://172.22.22.22:50001');
+var $api = chai.request('http://172.22.22.22:50001/api');
 
 var expect = chai.expect;
 
