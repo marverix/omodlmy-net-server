@@ -126,7 +126,6 @@ app.post('/api/join-prayer/:id', api.postJoinPrayer);
 
 // default
 app.use(function (req, res) {
-  // fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   res.sendStatus(404);
 });
 
