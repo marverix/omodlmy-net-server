@@ -6,3 +6,6 @@
 
     roles:
       - role: server-update
+
+    vars:
+      server_mode: production
