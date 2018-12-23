@@ -1,5 +1,7 @@
 # Omódlmy Net - Server
 
+[![CodeFactor](https://www.codefactor.io/repository/github/icxc-pl/omodlmy-net-server/badge)](https://www.codefactor.io/repository/github/icxc-pl/omodlmy-net-server)
+
 Server do aplikacji Omodlmy Net.
 
 
