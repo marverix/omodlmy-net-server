@@ -1,7 +1,7 @@
 {
   "name": "omodlmy.net",
   "description": "Omódlmy Net - Server",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "Marek Sierociński",
   "contributors": [],
   "engines": {
@@ -20,12 +20,11 @@
     }
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "ajv": "^6.5.3",
     "connect-mongodb-session": "^2.0.3",
     "express": "^4.16.0",
     "express-session": "^1.15.6",
     "finka": "^1.0.0",
-    "ip": "^1.1.5",
     "helmet": "^3.12.1",
     "mongodb": "^3.1.1"
   },
